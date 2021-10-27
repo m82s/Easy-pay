@@ -1,0 +1,19 @@
+vi create_ec2_instance with_sg_tag.yml
+
+name: shopping experience
+host: localhost
+connection: local
+gather_facts: false
+tasks:
+   -name: provision
+   ec2:
+     instance_type: tl.micro
+     image: ami-074cce78125f09d61
+     count: 1
+     key_name: Ec2Key
+     Region: us-east-1
+     wait: yes
+     group: easy pay security group
+     instance_tags:
+            Name: Test
+            Env: Dev
