@@ -1,0 +1,2 @@
+sudo snap install docker
+sudo docker run -d tomcat
