@@ -1,0 +1,21 @@
+sudo apt-get update -y
+sudo apt-get install -y apt-transport-https
+sudo su -
+curl-s https://packages.cloud.google.com/apt/doc/apt-key.gpg/apt-key add -
+cat<<EoF>/etc/apt/sources-list.d/kurbernetes.list
+deb http://apt.kubernetes.io/kurbernetes-xenial main
+  EoF
+apt-get update
+apt-get install -y docker
+sudo usermod -a -G docker ubuntu
+systemctl restart docker
+system enable docker.service
+at-get install -y kubelet kubeadm kubectl/kubernetes -cni
+sudo dpkg -i --force -overwrite /var/cache/apt/archieves/kubernetes -cni_.5-00_amd64.deb
+apt-get install -y kubelet kubeadm kubectl kurbernetes -cni
+sudo apt-get install vim -y
+vim /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+  Environment = "cgroup-driver=systemd/cgroup-driver=cgroupfs"
+kubeadm init
+## instance image
+token ot2wed.yknggiriyhrbpqs
