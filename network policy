@@ -1,0 +1,37 @@
+api version: networking.k85.io/vi
+kind: network policy
+metadata:
+  name: front end traffic
+  namespace: default
+spec:
+  podSelector:
+    matchlabels:
+    role: ab
+  policyType:
+    - Ingress
+    - Egress
+ingress:
+  -from
+    -ipBlock:
+      cidr: 172.17.0.0//16
+      except:
+        172.17.0.0//24
+
+-namespace Selector:
+    matchlabels:
+     project: front end pods
+-pod Selector:
+    matchlabels:
+    role: frontend
+ ports:
+  -protocol: Tcp
+  -port: 6379
+  
+  egress:
+     to:
+     ipBlock:
+     cidr: 10.0.0/24
+ ports:
+  protocol: TCP
+  port: 5978
+       
